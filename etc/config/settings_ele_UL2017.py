@@ -85,19 +85,20 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
+cutBase   = 'tag_Ele_pt > 25 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0'
 
 additionalCuts = { 
-    0 : 'tag_Ele_trigMVA > 0.92 ',
-    1 : 'tag_Ele_trigMVA > 0.92 ',
-    2 : 'tag_Ele_trigMVA > 0.92 ',
-    3 : 'tag_Ele_trigMVA > 0.92 ',
-    4 : 'tag_Ele_trigMVA > 0.92 ',
-    5 : 'tag_Ele_trigMVA > 0.92 ',
-    6 : 'tag_Ele_trigMVA > 0.92 ',
-    7 : 'tag_Ele_trigMVA > 0.92 ',
-    8 : 'tag_Ele_trigMVA > 0.92 ',
-    9 : 'tag_Ele_trigMVA > 0.92 '
+    0 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    1 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    2 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    3 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    4 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    5 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    6 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    7 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    8 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    9 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    9 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
 }
 
 #### or remove any additional cut (default)
