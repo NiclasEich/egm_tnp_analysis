@@ -18,6 +18,7 @@ flags = {
     'passingMVA94XwpLisoV2'    : '(passingMVA94XwpLisoV2 == 1)',
     'passingMVA94XwpLnoisoV2'  : '(passingMVA94XwpLnoisoV2 == 1)',
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
+    'passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2' : '(passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2 == 1)',
     }
 
 baseOutDir = 'results/UL2017/tnpEleID/'
@@ -76,7 +77,7 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [15,20,35,50, 500] },
 
 
 ]
@@ -85,7 +86,7 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 25 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0'
+cutBase   = 'tag_Ele_pt > 25 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15'
 
 additionalCuts = { 
     0 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
@@ -98,11 +99,10 @@ additionalCuts = {
     7 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
     8 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
     9 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
-    9 : 'tag_Ele_trigMVA > 0.92 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
 }
 
 #### or remove any additional cut (default)
-#additionalCuts = None
+additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
