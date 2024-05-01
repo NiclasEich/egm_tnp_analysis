@@ -102,7 +102,7 @@ additionalCuts = {
 }
 
 #### or remove any additional cut (default)
-additionalCuts = None
+# additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
