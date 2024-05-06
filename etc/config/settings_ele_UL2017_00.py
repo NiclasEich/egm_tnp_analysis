@@ -21,7 +21,7 @@ flags = {
     'passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2' : '(passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2 == 1)',
     }
 
-baseOutDir = 'results/UL2017_00/tnpEleID/'
+baseOutDir = 'results/UL2017_01/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -89,20 +89,20 @@ biningDef = [
 cutBase   = 'tag_Ele_pt > 25 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15'
 
 additionalCuts = { 
-    0 : ' abs(pair_mass - 91.1876) <= 15',
-    1 : ' abs(pair_mass - 91.1876) <= 15',
-    2 : ' abs(pair_mass - 91.1876) <= 15',
-    3 : ' abs(pair_mass - 91.1876) <= 15',
-    4 : ' abs(pair_mass - 91.1876) <= 15',
-    5 : ' abs(pair_mass - 91.1876) <= 15',
-    6 : ' abs(pair_mass - 91.1876) <= 15',
-    7 : ' abs(pair_mass - 91.1876) <= 15',
-    8 : ' abs(pair_mass - 91.1876) <= 15',
-    9 : ' abs(pair_mass - 91.1876) <= 15',
+    0 : '',
+    1 : '',
+    2 : '',
+    3 : '',
+    4 : '',
+    5 : '',
+    6 : '',
+    7 : '',
+    8 : '',
+    9 : '',
 }
 
 #### or remove any additional cut (default)
-# additionalCuts = None
+additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
