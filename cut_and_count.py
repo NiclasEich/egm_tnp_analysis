@@ -11,7 +11,7 @@ def main(input_file):
     f = ur.open(input_file)
     tree = f["tnpEleTrig"]["fitter_tree"]
     trigger = tree["passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2"].array()
-    mask = tree["tag_Ele_pt"].array() > 25 & np.abs(tree["tag_sc_eta"].array()) < 2.5 & tree["el_q"].array()*tree["tag_Ele_q"].array() < 0 & tree["el_pt"].array() > 15
+    mask = (tree["tag_Ele_pt"].array() > 25 ) & (np.abs(tree["tag_sc_eta"].array()) < 2.5) & (tree["el_q"].array()*tree["tag_Ele_q"].array() < 0) & (tree["el_pt"].array() > 15)
     target = trigger[mask]
     print(float(np.sum(target))/len(target))
 
