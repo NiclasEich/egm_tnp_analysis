@@ -86,7 +86,7 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15 && abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200'
+cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200'
 
 additionalCuts = None
 """
