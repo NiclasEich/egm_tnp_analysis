@@ -18,6 +18,8 @@ flags = {
     'passingMVA94XwpLisoV2'    : '(passingMVA94XwpLisoV2 == 1)',
     'passingMVA94XwpLnoisoV2'  : '(passingMVA94XwpLnoisoV2 == 1)',
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
+    'passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2' : '(passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2 == 1)',
+    'passEle32_WPTight_Gsf_L1DoubleEG' : '(passEle32_WPTight_Gsf_L1DoubleEG == 1)',
     }
 
 baseOutDir = 'results/UL2018/tnpEleID/'
@@ -28,7 +30,7 @@ baseOutDir = 'results/UL2018/tnpEleID/'
 ### samples are defined in etc/inputs/tnpSampleDef.py
 ### not: you can setup another sampleDef File in inputs
 import etc.inputs.tnpSampleDef as tnpSamples
-tnpTreeDir = 'tnpEleIDs'
+tnpTreeDir = 'tnpEleTrig'
 
 samplesDef = {
     'data'   : tnpSamples.UL2018['data_Run2018A'].clone(),
@@ -75,17 +77,17 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
-
-
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [15,20,35,50, 500] },
 ]
 
 #############################################################
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
+cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1'
 
+additionalCuts = None
+"""
 additionalCuts = { 
     0 : 'tag_Ele_trigMVA > 0.92 ',
     1 : 'tag_Ele_trigMVA > 0.92 ',
@@ -98,6 +100,7 @@ additionalCuts = {
     8 : 'tag_Ele_trigMVA > 0.92 ',
     9 : 'tag_Ele_trigMVA > 0.92 '
 }
+"""
 
 #### or remove any additional cut (default)
 #additionalCuts = None
@@ -106,10 +109,10 @@ additionalCuts = {
 ########## fitting params to tune fit by hand if necessary
 #############################################################
 tnpParNomFit = [
-    "meanP[-0.0,-5.0,5.0]","sigmaP[0.9,0.5,5.0]",
-    "meanF[-0.0,-5.0,5.0]","sigmaF[0.9,0.5,5.0]",
+    "meanP[-0.8,-5.0,5.0]","sigmaP[1.38,0.5,5.0]",
+    "meanF[-1.5,-5.0,5.0]","sigmaF[1.47,0.5,5.0]",
     "acmsP[60.,50.,80.]","betaP[0.05,0.01,0.08]","gammaP[0.1, -2, 2]","peakP[90.0]",
-    "acmsF[60.,50.,80.]","betaF[0.05,0.01,0.08]","gammaF[0.1, -2, 2]","peakF[90.0]",
+    "acmsF[60.,40.,80.]","betaF[0.05,0.01,0.08]","gammaF[0.1, -2, 2]","peakF[90.0]",
     ]
 
 tnpParAltSigFit = [
