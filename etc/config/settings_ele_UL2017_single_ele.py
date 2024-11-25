@@ -19,6 +19,7 @@ flags = {
     'passingMVA94XwpLnoisoV2'  : '(passingMVA94XwpLnoisoV2 == 1)',
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     'passHltEle32DoubleEGWPTightGsf' : '(passHltEle32DoubleEGWPTightGsf == 1)',
+    'passEle32_WPTight_Gsf_L1DoubleEG' : '(passEle32_WPTight_Gsf_L1DoubleEG == 1)',
     }
 
 baseOutDir = 'results/UL2017_singele_ele/tnpEleID/'
@@ -77,9 +78,7 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [15,20,35,50, 500] },
-
-
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [35,50, 75, 500] },
 ]
 
 #############################################################
@@ -93,7 +92,7 @@ additionalCuts = None
 additionalCuts = { 
     0 : ' ',
     1 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
-    2 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    2 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && gl_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
     3 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
     4 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
     5 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',

@@ -19,10 +19,9 @@ flags = {
     'passingMVA94XwpLnoisoV2'  : '(passingMVA94XwpLnoisoV2 == 1)',
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     'passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2' : '(passHltEle23Ele12CaloIdLTrackIdLIsoVLLeg2 == 1)',
-    'passEle32_WPTight_Gsf_L1DoubleEG' : '(passEle32_WPTight_Gsf_L1DoubleEG == 1)',
     }
 
-baseOutDir = 'results/UL2018/tnpEleID/'
+baseOutDir = 'results/UL2017_05/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -33,16 +32,17 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleTrig'
 
 samplesDef = {
-    'data'   : tnpSamples.UL2018['data_Run2018A'].clone(),
-    'mcNom'  : tnpSamples.UL2018['DY_amcatnloext'].clone(),
-    'mcAlt'  : tnpSamples.UL2018['DY_madgraph'].clone(),
-    'tagSel' : tnpSamples.UL2018['DY_amcatnloext'].clone(),
+    'data'   : tnpSamples.UL2017['data_Run2017B'].clone(),
+    'mcNom'  : tnpSamples.UL2017['DY_amcatnloext'].clone(),
+    'mcAlt'  : tnpSamples.UL2017['DY_madgraph'].clone(),
+    'tagSel' : tnpSamples.UL2017['DY_amcatnloext'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.UL2018['data_Run2018B'] )
-samplesDef['data'].add_sample( tnpSamples.UL2018['data_Run2018C'] )
-samplesDef['data'].add_sample( tnpSamples.UL2018['data_Run2018D'] )
+samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017C'] )
+samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017D'] )
+samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017E'] )
+samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017F'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -63,13 +63,13 @@ if not samplesDef['tagSel'] is None:
 
 
 ## set MC weight, can use several pileup rw for different data taking periods
-weightName = 'weights_2018_runABCD.totWeight'
+weightName = 'weights_2017_runBCDEF.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/PU_Trees/DY_amcatnloext_ele.pu.puTree.root')
-if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/PU_Trees/DY_madgraph_ele.pu.puTree.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/PU_Trees/DY_amcatnloext_ele.pu.puTree.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/eos/cms/store/group/phys_egamma/swmukher/UL2017/PU_miniAOD/DY_amcatnloext_ele.pu.puTree.root')
+if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/eos/cms/store/group/phys_egamma/swmukher/UL2017/PU_miniAOD/DY_madgraph_ele.pu.puTree.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/store/group/phys_egamma/swmukher/UL2017/PU_miniAOD/DY_amcatnloext_ele.pu.puTree.root')
 
 
 #############################################################
@@ -77,42 +77,44 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/eos/cms/s
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [35,50, 75, 500] },
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [15,20,35,50, 500] },
+
+
 ]
 
 #############################################################
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.5 && el_pt > 35 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet > 30'
+cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.5 && el_q*tag_Ele_q < 0 && el_pt > 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200'
 
 additionalCuts = None
 """
 additionalCuts = { 
-    0 : 'tag_Ele_trigMVA > 0.92 ',
-    1 : 'tag_Ele_trigMVA > 0.92 ',
-    2 : 'tag_Ele_trigMVA > 0.92 ',
-    3 : 'tag_Ele_trigMVA > 0.92 ',
-    4 : 'tag_Ele_trigMVA > 0.92 ',
-    5 : 'tag_Ele_trigMVA > 0.92 ',
-    6 : 'tag_Ele_trigMVA > 0.92 ',
-    7 : 'tag_Ele_trigMVA > 0.92 ',
-    8 : 'tag_Ele_trigMVA > 0.92 ',
-    9 : 'tag_Ele_trigMVA > 0.92 '
+    0 : ' ',
+    1 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    2 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    3 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    4 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    5 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    6 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    7 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    8 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
+    9 : ' abs(pair_mass - 91.1876) <= 15 && tag_Ele_dxy <= 0.05 && el_dxy <= 0.05 && tag_Ele_dz <= 0.1 && el_dz <= 0.1 && tag_el_sip <= 8.0 && el_sip <= 8.0 && el_lost_hits <= 1 && event_met_pfmet < 200',
 }
 """
 
 #### or remove any additional cut (default)
-#additionalCuts = None
+# additionalCuts = None
 
 #############################################################
 ########## fitting params to tune fit by hand if necessary
 #############################################################
 tnpParNomFit = [
-    "meanP[-0.8,-5.0,5.0]","sigmaP[1.38,0.5,5.0]",
-    "meanF[-1.5,-5.0,5.0]","sigmaF[1.47,0.5,5.0]",
-    "acmsP[60.,50.,80.]","betaP[0.05,0.01,0.08]","gammaP[0.1, -2, 2]","peakP[90.0]",
-    "acmsF[60.,40.,80.]","betaF[0.05,0.01,0.08]","gammaF[0.1, -2, 2]","peakF[90.0]",
+    "meanP[-0.0,-5.0,5.0]","sigmaP[0.9,0.5,5.0]",
+    "meanF[-1.0,-5.0,5.0]","sigmaF[2.2,0.5,5.0]",
+    "acmsP[60.,30.,80.]","betaP[0.05,0.01,1.1]","gammaP[0.1, -2, 2]","peakP[90.0]",
+    "acmsF[50.,30.,80.]","betaF[0.1,0.01,0.12]","gammaF[0.03, -2, 2]","peakF[90.0]",
     ]
 
 tnpParAltSigFit = [
